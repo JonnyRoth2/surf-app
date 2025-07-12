@@ -66,3 +66,20 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+html, body, #root {
+  height: 10%;
+  margin: 0;
+  padding: 0;
+}
+/* .map-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.leaflet-map {
+  height: 50%;
+  width: 50%;
+} */

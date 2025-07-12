@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import './leaflet-fix';
+import { useState } from 'react';
+import { getDistance } from 'geolib';
 
-function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+function ClickMarker({ onMapClick }) {
+  useMapEvents({
+    click(e) {
+      onMapClick(e.latlng); 
+    },
+  });
+  return null;
 }
 
-export default App
+function FlyToClick({ position }) {
+  const map = useMapEvents({});
+  if (position) {
+    map.flyTo(position, map.getZoom());
+  }
+  return null;
+}
+
+function App() {
+  const [markerPosition, setMarkerPosition] = useState(null);
+
+  const handleMapClick = (latlng) => {
+    setMarkerPosition(latlng);
+  };
+
+  return (
+    <div style={{ height: "100vh", width: "100vw" }}>
+      <MapContainer center={[30, -90]} zoom={3} style={{ height: "50%", width: "50%" }}>
+        <TileLayer
+          attribution='&copy; OpenStreetMap contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        
+        <FlyToClick position={markerPosition} />
+        <ClickMarker onMapClick={handleMapClick} />
+
+        
+        {markerPosition && (
+          <Marker position={markerPosition}>
+            <Popup>
+              You clicked here: <br />
+              Lat: {markerPosition.lat.toFixed(4)},<br />
+              Lng: {markerPosition.lng.toFixed(4)}
+              
+            </Popup>
+          </Marker>
+        )}
+      </MapContainer>
+    </div>
+  );
+}
+
+export default App;
