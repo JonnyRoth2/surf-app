@@ -1,12 +1,26 @@
-# React + Vite
+# SurfWatch
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SurfWatch is a simple yet powerful surfing companion app designed to provide accurate and up-to-date wave, tide, and current information. It was created out of frustration with existing apps that are cluttered or don’t deliver precise data quickly. SurfWatch focuses on what matters most to surfers — reliable, straightforward, real-time ocean conditions.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Interactive world map with clickable locations to get wave and tide data  
+- Search for cities to quickly navigate to your favorite surf spots  
+- Real-time current speed and direction displayed on the map  
+- Clean and minimal interface for quick information access  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Why SurfWatch?
+
+Existing surf apps often overwhelm users with unnecessary features or confusing interfaces. SurfWatch was built with the goal of cutting through the noise and delivering exactly what surfers need — reliable ocean condition data — without distractions.
+
+---
+
+## Technologies Used
+
+- React with React-Leaflet for the interactive map  
+- OpenStreetMap tiles for map rendering  
+- NOAA Tides and Currents API for ocean data  
